@@ -1,12 +1,49 @@
-from datetime import date
+import datetime
+import re
 from openpyxl.styles.cell_style import StyleArray
 from openpyxl.worksheet._write_only import WriteOnlyWorksheet
 from openpyxl.worksheet.worksheet import Worksheet
-from typing import (
-    Any,
-    Optional,
-    Union,
+from openpyxl.styles import numbers
+from typing import Any, Optional, Union, Callable, Tuple, Dict
+from openpyxl.compat import NUMERIC_TYPES
+
+TIME_TYPES = (datetime.datetime, datetime.date, datetime.time, datetime.timedelta)
+TIME_FORMATS = {
+    datetime.datetime: numbers.FORMAT_DATE_DATETIME,
+    datetime.date: numbers.FORMAT_DATE_YYYYMMDD2,
+    datetime.time: numbers.FORMAT_DATE_TIME6,
+    datetime.timedelta: numbers.FORMAT_DATE_TIMEDELTA,
+}
+
+STRING_TYPES = (str, bytes)
+KNOWN_TYPES = NUMERIC_TYPES + TIME_TYPES + STRING_TYPES + (bool, type(None))
+
+ILLEGAL_CHARACTERS_RE = re.compile(r"[\000-\010]|[\013-\014]|[\016-\037]")
+ERROR_CODES = ("#NULL!", "#DIV/0!", "#VALUE!", "#REF!", "#NAME?", "#NUM!", "#N/A")
+
+ERROR_CODES = ERROR_CODES
+
+TYPE_STRING: str = "s"
+TYPE_FORMULA: str = "f"
+TYPE_NUMERIC: str = "n"
+TYPE_BOOL: str = "b"
+TYPE_NULL: str = "n"
+TYPE_INLINE: str = "inlineStr"
+TYPE_ERROR: str = "e"
+TYPE_FORMULA_CACHE_STRING: str = "str"
+
+VALID_TYPES: Tuple[str, ...] = (
+    TYPE_STRING,
+    TYPE_FORMULA,
+    TYPE_NUMERIC,
+    TYPE_BOOL,
+    TYPE_NULL,
+    TYPE_INLINE,
+    TYPE_ERROR,
+    TYPE_FORMULA_CACHE_STRING,
 )
+
+_TYPES: Dict[Callable, str] = {int: "n", float: "n", str: "s", bool: "b"}
 
 def WriteOnlyCell(
     ws: Optional[WriteOnlyWorksheet] = ..., value: Optional[Union[str, int]] = ...
@@ -20,7 +57,7 @@ class Cell:
         worksheet: Optional[Union[Worksheet, WriteOnlyWorksheet]],
         row: Optional[Union[str, int]] = ...,
         column: Optional[int] = ...,
-        value: Optional[Union[date, str, int]] = ...,
+        value: Optional[Union[datetime.date, str, int]] = ...,
         style_array: Optional[StyleArray] = ...,
     ) -> None: ...
     def __repr__(self) -> str: ...

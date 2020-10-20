@@ -61,6 +61,19 @@ class Cell(StyleableObject):
         value: Optional[Union[datetime.date, str, int]] = ...,
         style_array: Optional[StyleArray] = ...,
     ) -> None: ...
+    def __init__(self, worksheet, row=None, column=None, value=None, style_array=None):
+        super(Cell, self).__init__(worksheet, style_array)
+        self.row = row
+        """Row number of this cell (1-based)"""
+        self.column = column
+        """Column number of this cell (1-based)"""
+        # _value is the stored value, while value is the displayed value
+        self._value = None
+        self._hyperlink = None
+        self.data_type = "n"
+        if value is not None:
+            self.value = value
+        self._comment = None
     def __repr__(self) -> str: ...
     def _bind_value(self, value: Any) -> None: ...
     def check_string(self, value: Union[str, bytes]) -> str: ...

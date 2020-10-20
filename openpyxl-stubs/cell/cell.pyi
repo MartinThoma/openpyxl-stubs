@@ -4,6 +4,7 @@ from openpyxl.styles.cell_style import StyleArray
 from openpyxl.worksheet._write_only import WriteOnlyWorksheet
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.styles import numbers
+from openpyxl.styles.styleable import StyleableObject
 from typing import Any, Optional, Union, Callable, Tuple, Dict
 from openpyxl.compat import NUMERIC_TYPES
 
@@ -51,7 +52,7 @@ def WriteOnlyCell(
 def get_time_format(t: Any) -> Optional[str]: ...
 def get_type(t: Any, value: Any) -> Optional[str]: ...
 
-class Cell:
+class Cell(StyleableObject):
     def __init__(
         self,
         worksheet: Optional[Union[Worksheet, WriteOnlyWorksheet]],

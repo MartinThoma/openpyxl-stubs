@@ -8,10 +8,8 @@ from typing import (
     Union,
 )
 
-
 class ChartLines:
     def __init__(self, spPr: Optional[GraphicalProperties] = ...) -> None: ...
-
 
 class DateAxis:
     def __init__(
@@ -27,10 +25,10 @@ class DateAxis:
         **kw
     ) -> None: ...
 
-
 class DisplayUnitsLabel:
-    def __init__(self, layout: None = ..., tx: None = ..., spPr: None = ..., txPr: None = ...) -> None: ...
-
+    def __init__(
+        self, layout: None = ..., tx: None = ..., spPr: None = ..., txPr: None = ...
+    ) -> None: ...
 
 class DisplayUnitsLabelList:
     def __init__(
@@ -38,9 +36,8 @@ class DisplayUnitsLabelList:
         custUnit: None = ...,
         builtInUnit: Optional[str] = ...,
         dispUnitsLbl: None = ...,
-        extLst: None = ...
+        extLst: None = ...,
     ) -> None: ...
-
 
 class NumericAxis:
     def __init__(
@@ -55,7 +52,6 @@ class NumericAxis:
     @classmethod
     def from_tree(cls, node: _Element) -> NumericAxis: ...
 
-
 class Scaling:
     def __init__(
         self,
@@ -63,13 +59,17 @@ class Scaling:
         orientation: str = ...,
         max: Optional[str] = ...,
         min: Optional[str] = ...,
-        extLst: None = ...
+        extLst: None = ...,
     ) -> None: ...
 
-
 class SeriesAxis:
-    def __init__(self, tickLblSkip: None = ..., tickMarkSkip: None = ..., extLst: None = ..., **kw) -> None: ...
-
+    def __init__(
+        self,
+        tickLblSkip: None = ...,
+        tickMarkSkip: None = ...,
+        extLst: None = ...,
+        **kw
+    ) -> None: ...
 
 class TextAxis:
     def __init__(
@@ -83,7 +83,6 @@ class TextAxis:
         extLst: None = ...,
         **kw
     ) -> None: ...
-
 
 class _BaseAxis:
     def __init__(
@@ -103,5 +102,5 @@ class _BaseAxis:
         txPr: Optional[RichText] = ...,
         crossAx: Optional[Union[str, int]] = ...,
         crosses: Optional[str] = ...,
-        crossesAt: Optional[str] = ...
+        crossesAt: Optional[str] = ...,
     ) -> None: ...

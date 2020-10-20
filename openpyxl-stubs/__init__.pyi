@@ -1,11 +1,11 @@
 # Copyright (c) 2010-2020 openpyxl
 
-from openpyxl.compat.numbers import NUMPY
-from openpyxl.xml import DEFUSEDXML, LXML
-from openpyxl.workbook import Workbook
+from openpyxl.compat.numbers import NUMPY as NUMPY
+from openpyxl.xml import DEFUSEDXML as DEFUSEDXML, LXML as LXML
+from openpyxl.workbook import Workbook as Workbook
 from openpyxl.reader.excel import load_workbook as open
-from openpyxl.reader.excel import load_workbook
-import openpyxl._constants as constants
+from openpyxl.reader.excel import load_workbook as load_workbook
+import openpyxl._constants as constants as constants
 
 # Expose constants especially the version number
 

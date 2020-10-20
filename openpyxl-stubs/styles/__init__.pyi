@@ -1,4 +1,4 @@
-from .alignment import Alignment
+from .alignment import Alignment as Alignment
 from .borders import Border, Side
 from .colors import Color
 from .fills import PatternFill, GradientFill, Fill

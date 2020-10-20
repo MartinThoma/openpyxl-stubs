@@ -1,8 +1,8 @@
-from .alignment import Alignment
-from .borders import Border, Side
-from .colors import Color
-from .fills import PatternFill, GradientFill, Fill
-from .fonts import Font, DEFAULT_FONT
-from .numbers import NumberFormatDescriptor, is_date_format, is_builtin
-from .protection import Protection
-from .named_styles import NamedStyle
+from openpyxl.styles.alignment import Alignment
+from openpyxl.styles.borders import Border, Side
+from openpyxl.styles.colors import Color
+from openpyxl.styles.fills import PatternFill, GradientFill, Fill
+from openpyxl.styles.fonts import Font, DEFAULT_FONT
+from openpyxl.styles.numbers import NumberFormatDescriptor, is_date_format, is_builtin
+from openpyxl.styles.protection import Protection
+from openpyxl.styles.named_styles import NamedStyle

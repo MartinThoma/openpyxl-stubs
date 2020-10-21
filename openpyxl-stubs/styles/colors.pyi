@@ -7,6 +7,7 @@ from typing import (
     Tuple,
     Union,
 )
+import re
 
 # Default Color Index as per 18.8.27 of ECMA Part 4
 COLOR_INDEX = (

@@ -5,6 +5,7 @@ from openpyxl.cell.cell import (
 from openpyxl.cell.read_only import ReadOnlyCell
 from openpyxl.chart.bar_chart import BarChart
 from openpyxl.drawing.image import Image
+from openpyxl.descriptors import String
 from openpyxl.workbook.workbook import Workbook
 from openpyxl.worksheet.cell_range import CellRange
 from openpyxl.worksheet.dimensions import (
@@ -16,6 +17,7 @@ from openpyxl.worksheet.table import (
     Table,
     TableList,
 )
+from openpyxl.workbook.child import _WorkbookChild
 from openpyxl.worksheet.tests.test_dimensions import DummyWorkbook
 from openpyxl.worksheet.tests.test_worksheet import DummyWorkbook
 from openpyxl.worksheet.views import SheetView
@@ -29,14 +31,56 @@ from typing import (
 
 def _gutter(idx: int, offset: int, max_val: int) -> range: ...
 
-class Worksheet:
+class Worksheet(_WorkbookChild):
     def __delitem__(self, key: str) -> None: ...
     def __getitem__(self, key: Union[str, slice, int]) -> Any: ...
     def __init__(
         self,
         parent: Union[DummyWorkbook, DummyWorkbook, Workbook],
         title: Optional[Union[str, int]] = ...,
-    ) -> None: ...
+    ) -> None:
+        _WorkbookChild.__init__(self, parent, title)
+        self._setup()
+    def _setup(self):
+        self.row_dimensions = DimensionHolder(
+            worksheet=self, default_factory=self._add_row
+        )
+        self.column_dimensions = DimensionHolder(
+            worksheet=self, default_factory=self._add_column
+        )
+        self.row_breaks = RowBreak()
+        self.col_breaks = ColBreak()
+        self._cells = {}
+        self._charts = []
+        self._images = []
+        self._rels = RelationshipList()
+        self._drawing = None
+        self._comments = []
+        self.merged_cells = MultiCellRange()
+        self._tables = TableList()
+        self._pivots = []
+        self.data_validations = DataValidationList()
+        self._hyperlinks = []
+        self.sheet_state = "visible"
+        self.page_setup = PrintPageSetup(worksheet=self)
+        self.print_options = PrintOptions()
+        self._print_rows = None
+        self._print_cols = None
+        self._print_area = None
+        self.page_margins = PageMargins()
+        self.views = SheetViewList()
+        self.protection = SheetProtection()
+
+        self._current_row = 0
+        self.auto_filter = AutoFilter()
+        self.paper_size = None
+        self.formula_attributes = {}
+        self.orientation = None
+        self.conditional_formatting = ConditionalFormattingList()
+        self.legacy_drawing = None
+        self.sheet_properties = WorksheetProperties()
+        self.sheet_format = SheetFormatProperties()
+        self.scenarios = ScenarioList()
     def __iter__(self) -> Iterator[Any]: ...
     def __setitem__(self, key: str, value: Union[str, int]) -> None: ...
     def _add_cell(self, cell: Cell) -> None: ...
@@ -76,7 +120,6 @@ class Worksheet:
         offset: int = ...,
         row_or_col: str = ...,
     ) -> None: ...
-    def _setup(self) -> None: ...
     @property
     def active_cell(self) -> str: ...
     def add_chart(self, chart: BarChart, anchor: Optional[str] = ...) -> None: ...
@@ -162,3 +205,10 @@ class Worksheet:
             Tuple[None, None, None, None, None, None, str],
         ]
     ]: ...
+    @property
+    def freeze_panes(self) -> Optional[String]:
+        if self.sheet_view.pane is not None:
+            return self.sheet_view.pane.topLeftCell
+        return None
+    @freeze_panes.setter
+    def freeze_panes(self, topLeftCell=None) -> None: ...

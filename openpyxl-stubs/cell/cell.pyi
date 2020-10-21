@@ -48,7 +48,9 @@ _TYPES: Dict[Callable, str] = {int: "n", float: "n", str: "s", bool: "b"}
 
 def WriteOnlyCell(
     ws: Optional[WriteOnlyWorksheet] = ..., value: Optional[Union[str, int]] = ...
-) -> Cell: ...
+) -> Cell:
+    return Cell(worksheet=ws, column=1, row=1, value=value)
+
 def get_time_format(t: Any) -> Optional[str]: ...
 def get_type(t: Any, value: Any) -> Optional[str]: ...
 
@@ -60,8 +62,7 @@ class Cell(StyleableObject):
         column: Optional[int] = ...,
         value: Optional[Union[datetime.date, str, int]] = ...,
         style_array: Optional[StyleArray] = ...,
-    ) -> None: ...
-    def __init__(self, worksheet, row=None, column=None, value=None, style_array=None):
+    ) -> None:
         super(Cell, self).__init__(worksheet, style_array)
         self.row = row
         """Row number of this cell (1-based)"""
@@ -87,11 +88,23 @@ class Cell(StyleableObject):
     def is_date(self) -> bool: ...
     def offset(self, row: int = ..., column: int = ...) -> Cell: ...
 
-class MergedCell:
+class MergedCell(StyleableObject):
+    __slots__ = ("row", "column")
+
+    _value = None
+    data_type = "n"
+    comment = None
+    hyperlink = None
     def __init__(
         self,
         worksheet: Worksheet,
         row: Optional[int] = ...,
         column: Optional[int] = ...,
-    ) -> None: ...
+    ) -> None:
+        super(MergedCell, self).__init__(worksheet)
+        self.row = row
+        self.column = column
     def __repr__(self) -> str: ...
+    coordinate = Cell.coordinate
+    _comment = comment
+    value = _value

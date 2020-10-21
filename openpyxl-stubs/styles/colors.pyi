@@ -88,9 +88,9 @@ class Color:
     def __init__(
         self,
         rgb: str = ...,
-        indexed: Optional[Union[str, int]] = ...,
-        auto: Optional[Union[str, bool, int]] = ...,
-        theme: Optional[Union[str, int]] = ...,
+        indexed: Union[None, str, int] = ...,
+        auto: Union[None, str, bool, int] = ...,
+        theme: Union[None, str, int] = ...,
         tint: Union[float, str] = ...,
         index: None = ...,
         type: str = ...,
@@ -101,7 +101,7 @@ class Color:
 
 class ColorDescriptor:
     def __set__(
-        self, instance: Serialisable, value: Optional[Union[str, Color]]
+        self, instance: Serialisable, value: Union[None, str, Color]
     ) -> None: ...
 
 class ColorList:

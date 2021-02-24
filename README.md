@@ -1,7 +1,7 @@
-[![PyPI version](https://badge.fury.io/py/Flask-HTTPAuth-stubs.svg)](https://pypi.org/project/Flask-HTTPAuth-stubs)
-[![Code on Github](https://img.shields.io/badge/Code-GitHub-brightgreen)](https://github.com/MartinThoma/Flask-HTTPAuth-stubs)
+[![PyPI version](https://badge.fury.io/py/Flask-HTTPAuth-stubs.svg)](https://pypi.org/project/openpyxl-stubs)
+[![Code on Github](https://img.shields.io/badge/Code-GitHub-brightgreen)](https://github.com/MartinThoma/openpyxl-stubs)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-![GitHub last commit](https://img.shields.io/github/last-commit/MartinThoma/Flask-HTTPAuth-stubs)
+![GitHub last commit](https://img.shields.io/github/last-commit/MartinThoma/openpyxl-stubs)
 
 # openpyxl-stubs
 

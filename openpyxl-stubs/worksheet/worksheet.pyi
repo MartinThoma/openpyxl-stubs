@@ -1,33 +1,23 @@
-from openpyxl.cell.cell import (
-    Cell,
-    MergedCell,
-)
+# Core Library modules
+import datetime
+from decimal import Decimal
+from typing import Any, Iterator, Optional, Tuple, Union
+
+# Third party modules
+from openpyxl.cell.cell import Cell, MergedCell
 from openpyxl.cell.read_only import ReadOnlyCell
 from openpyxl.chart.bar_chart import BarChart
-from openpyxl.drawing.image import Image
 from openpyxl.descriptors import String
+from openpyxl.drawing.image import Image
+from openpyxl.workbook.child import _WorkbookChild
 from openpyxl.workbook.workbook import Workbook
 from openpyxl.worksheet.cell_range import CellRange
-from openpyxl.worksheet.dimensions import (
-    ColumnDimension,
-    RowDimension,
-)
+from openpyxl.worksheet.dimensions import ColumnDimension, RowDimension
 from openpyxl.worksheet.merge import MergedCellRange
-from openpyxl.worksheet.table import (
-    Table,
-    TableList,
-)
-from openpyxl.workbook.child import _WorkbookChild
+from openpyxl.worksheet.table import Table, TableList
 from openpyxl.worksheet.tests.test_dimensions import DummyWorkbook
 from openpyxl.worksheet.tests.test_worksheet import DummyWorkbook
 from openpyxl.worksheet.views import SheetView
-from typing import (
-    Any,
-    Iterator,
-    Optional,
-    Tuple,
-    Union,
-)
 
 def _gutter(idx: int, offset: int, max_val: int) -> range: ...
 
@@ -128,7 +118,22 @@ class Worksheet(_WorkbookChild):
     def append(self, iterable: Any) -> None: ...
     def calculate_dimension(self) -> str: ...
     def cell(
-        self, row: int, column: int, value: Optional[int] = ...
+        self,
+        row: int,
+        column: int,
+        value: Optional[
+            Union[
+                int,
+                float,
+                Decimal,
+                str,
+                bytes,
+                datetime.datetime,
+                datetime.date,
+                datetime.time,
+                datetime.timedelta,
+            ]
+        ] = ...,
     ) -> Union[MergedCell, ReadOnlyCell, Cell]: ...
     @property
     def columns(self) -> Iterator[Any]: ...

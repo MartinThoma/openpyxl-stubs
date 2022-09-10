@@ -145,8 +145,8 @@ class Worksheet(_WorkbookChild):
         self,
         min_col: Optional[int] = ...,
         max_col: Optional[int] = ...,
-        min_row: None = ...,
-        max_row: None = ...,
+        min_row: Optional[int] = ...,
+        max_row: Optional[int] = ...,
         values_only: bool = ...,
     ) -> Iterator[Any]: ...
     def iter_rows(

@@ -60,7 +60,7 @@ class Cell(StyleableObject):
         worksheet: Optional[Union[Worksheet, WriteOnlyWorksheet]],
         row: Optional[Union[str, int]] = ...,
         column: Optional[int] = ...,
-        value: Optional[Union[datetime.date, str, int]] = ...,
+        value: Optional[Union[datetime.date, str, int, float]] = ...,
         style_array: Optional[StyleArray] = ...,
     ) -> None:
         super(Cell, self).__init__(worksheet, style_array)

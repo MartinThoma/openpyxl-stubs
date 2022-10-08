@@ -9,13 +9,14 @@ from openpyxl.packaging.manifest import (
 from openpyxl.packaging.relationship import Relationship
 from openpyxl.packaging.workbook import ChildSheet
 from openpyxl.workbook.workbook import Workbook
+from pathlib import Path
 from typing import Union
 from zipfile import ZipFile
 
 def _find_workbook_part(package: Manifest) -> Override: ...
 def _validate_archive(filename: Union[str, BufferedReader, BytesIO]) -> ZipFile: ...
 def load_workbook(
-    filename: Union[str, BufferedReader, BytesIO],
+    filename: Union[str, Path, BufferedReader, BytesIO],
     read_only: bool = ...,
     keep_vba: bool = ...,
     data_only: bool = ...,

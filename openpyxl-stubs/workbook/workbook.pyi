@@ -4,6 +4,7 @@ from openpyxl.workbook.defined_name import DefinedName
 from openpyxl.worksheet._read_only import ReadOnlyWorksheet
 from openpyxl.worksheet._write_only import WriteOnlyWorksheet
 from openpyxl.worksheet.worksheet import Worksheet
+from pathlib import Path
 from typing import (
     List,
     Optional,
@@ -58,7 +59,7 @@ class Workbook:
     @property
     def read_only(self) -> bool: ...
     def remove(self, worksheet: Union[Chartsheet, Worksheet]) -> None: ...
-    def save(self, filename: Union[str, IO[bytes]]) -> None: ...
+    def save(self, filename: Union[str, Path, IO[bytes]]) -> None: ...
     @property
     def sheetnames(self) -> List[str]: ...
     @property

@@ -7,19 +7,19 @@ from typing import (
 )
 
 BORDER_NONE = None
-BORDER_DASHDOT = 'dashDot'
-BORDER_DASHDOTDOT = 'dashDotDot'
-BORDER_DASHED = 'dashed'
-BORDER_DOTTED = 'dotted'
-BORDER_DOUBLE = 'double'
-BORDER_HAIR = 'hair'
-BORDER_MEDIUM = 'medium'
-BORDER_MEDIUMDASHDOT = 'mediumDashDot'
-BORDER_MEDIUMDASHDOTDOT = 'mediumDashDotDot'
-BORDER_MEDIUMDASHED = 'mediumDashed'
-BORDER_SLANTDASHDOT = 'slantDashDot'
-BORDER_THICK = 'thick'
-BORDER_THIN = 'thin'
+BORDER_DASHDOT = "dashDot"
+BORDER_DASHDOTDOT = "dashDotDot"
+BORDER_DASHED = "dashed"
+BORDER_DOTTED = "dotted"
+BORDER_DOUBLE = "double"
+BORDER_HAIR = "hair"
+BORDER_MEDIUM = "medium"
+BORDER_MEDIUMDASHDOT = "mediumDashDot"
+BORDER_MEDIUMDASHDOTDOT = "mediumDashDotDot"
+BORDER_MEDIUMDASHED = "mediumDashed"
+BORDER_SLANTDASHDOT = "slantDashDot"
+BORDER_THICK = "thick"
+BORDER_THIN = "thin"
 
 class Border:
     def __init__(

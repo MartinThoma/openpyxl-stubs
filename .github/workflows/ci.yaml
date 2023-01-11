@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.rst'
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.rst'
+
+jobs:
+  tests:
+    name: test on ${{ matrix.python-version }}
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+    - name: Install requirements (Python 3)
+      run: |
+        pip install -r requirements/ci.txt
+    - name: Test with mypy
+      run : |
+        mypy openpyxl-stubs --show-error-codes

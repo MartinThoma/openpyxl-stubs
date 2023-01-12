@@ -12,6 +12,7 @@ from openpyxl.drawing.image import Image
 from openpyxl.workbook.child import _WorkbookChild
 from openpyxl.workbook.workbook import Workbook
 from openpyxl.worksheet.cell_range import CellRange
+from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.worksheet.dimensions import ColumnDimension, RowDimension
 from openpyxl.worksheet.merge import MergedCellRange
 from openpyxl.worksheet.table import Table, TableList
